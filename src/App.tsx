@@ -1,34 +1,24 @@
-import './App.css'
-import { useState, useMemo } from 'react';
-import { ThemeProvider, CssBaseline, Container, Typography, Button, Stack } from '@mui/material';
+import { useMemo, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ThemeProvider} from '@mui/material';
+import Landing from './pages/Landing';
+import LogIn from './pages/LogIn';
 import lightTheme from './themes/lightTheme';
 import darkTheme from './themes/darkTheme';
 
 function App() {
   const [modoOscuro, setModoOscuro] = useState(false);
   const theme = useMemo(() => (modoOscuro ? darkTheme : lightTheme), [modoOscuro]);
-
-  return (<ThemeProvider theme={theme}>
-    <CssBaseline />
-    <Container>
-      <Typography variant="h1" gutterBottom color="primary">
-        SmartInv
-      </Typography>
-      <Typography variant="h4">
-        Tu gestor de stock inteligente.
-      </Typography>
-
-      <Stack direction="row" spacing={2} justifyContent={'center'} sx={{mt: 4}}>
-        <Button variant="contained" disabled>
-          Registrarse
-        </Button>
-        <Button variant="outlined" color="primary">
-          Iniciar Sesión
-        </Button>
-      </Stack>
-    </Container>
-  </ThemeProvider>
-  )
+  return (
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<LogIn />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
