@@ -2,11 +2,14 @@ import '../styles/App.css'
 import { Typography, CssBaseline, Stack, TextField, Button } from "@mui/material"
 import { useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { useNavigate } from 'react-router-dom';
+
 
 function LogIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
@@ -23,7 +26,12 @@ function LogIn() {
             }
 
             const data = await response.json();
-            console.log('Respuesta del servidor:', data);
+
+            localStorage.setItem('access_token', data.access_token);
+            localStorage.setItem('refresh_token', data.refresh_token);
+            localStorage.setItem('token_type', data.token_type);
+
+            navigate('/dashboard')
         } catch (error) {
             if (error instanceof Error) {
                 toast.error(error.message);
