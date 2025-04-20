@@ -1,4 +1,4 @@
-const apiUrl = import.meta.env.DEVELOPMENT_API_URL;
+const apiUrl = import.meta.env.API_URL;
 
 export async function fetchWithAuth(input: RequestInfo, init?: RequestInit): Promise<Response> {
     const token = localStorage.getItem('access_token');
