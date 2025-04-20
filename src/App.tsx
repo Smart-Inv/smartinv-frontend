@@ -8,7 +8,7 @@ import lightTheme from './themes/lightTheme';
 import darkTheme from './themes/darkTheme';
 
 function App() {
-  const [modoOscuro, setModoOscuro] = useState(false);
+  const [modoOscuro] = useState(false);
   const theme = useMemo(() => (modoOscuro ? darkTheme : lightTheme), [modoOscuro]);
   return (
     <ThemeProvider theme={theme}>
