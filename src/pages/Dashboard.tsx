@@ -1,4 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { fetchWithAuth } from '../utils/fetchWithAuth';
+import { useNavigate } from 'react-router-dom';
+
+const apiUrl = import.meta.env.VITE_API_URL;
+
 import { CssBaseline, Box, Grid, Paper, Typography, Select, MenuItem, Avatar, Button } from '@mui/material';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from 'recharts';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -29,8 +34,33 @@ const barData = [
 const pieColors = ['#7E3FF2', '#A269FF', '#9AA0FF', '#64B5F6'];
 
 export default function Dashboard() {
+  const navigate = useNavigate()
   const [stockType, setStockType] = useState('Zapatillas');
   const [timeframe, setTimeframe] = useState('Último trimestre');
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function getDashboardData() {
+      try {
+        const res = await fetchWithAuth(`${apiUrl}/dashboard_data/`);
+        if (res.ok) {
+          const json = await res.json();
+          setData(json);
+        } else {
+          console.error('Error en la respuesta del servidor');
+        }
+      } catch (err) {
+        console.error('Error al obtener datos:', err);
+        navigate("/login"); 
+      } finally {
+        setLoading(false);
+        console.log(data, loading)
+      }
+    }
+
+    getDashboardData();
+  }, []);
 
   const renderLineChart = (height = 300) => (
     <ResponsiveContainer width="100%" height={height}>
