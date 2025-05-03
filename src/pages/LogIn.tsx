@@ -7,6 +7,8 @@ import { fetchWithAuth } from '../utils/fetchWithAuth';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
+console.log(apiUrl)
+
 
 function LogIn() {
     const [email, setEmail] = useState('');
@@ -16,7 +18,7 @@ function LogIn() {
 
     const handleLogin = async () => {
         try {
-            const response = await await fetchWithAuth(`${apiUrl}/login/`,{
+            const response = await fetchWithAuth(`${apiUrl}/login/`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
