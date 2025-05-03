@@ -3,6 +3,9 @@ import { Typography, CssBaseline, Stack, TextField, Button } from "@mui/material
 import { useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from 'react-router-dom';
+import { fetchWithAuth } from '../utils/fetchWithAuth';
+
+const apiUrl = import.meta.env.VITE_API_URL;
 
 
 function LogIn() {
@@ -13,7 +16,7 @@ function LogIn() {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/login/', {
+            const response = await await fetchWithAuth(`${apiUrl}/login/`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
