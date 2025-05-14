@@ -11,9 +11,7 @@ function Landing() {
     <>
       <CssBaseline />
       <Container>
-        <Typography variant="h1" gutterBottom color="primary">
-          SmartInv
-        </Typography>
+        <h1 className='text-7xl'>SmartInv</h1>
         <Typography variant="h4">
           Tu gestor de stock inteligente.
         </Typography>
