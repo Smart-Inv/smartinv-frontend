@@ -1,13 +1,21 @@
 @import "tailwindcss";
 
+@theme {
+  --color-light-red: #C1121F;
+  --color-dark-red: #780000;
+  --color-yellow: #FEFAE0;
+  --color-dark-blue: #003049;
+  --color-light-blue: #669BBC;
+}
+
 :root {
   --font-primary: 'Bricolage Grotesque', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,17 +30,4 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: var(--font-primary) !important;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
