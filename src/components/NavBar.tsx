@@ -26,8 +26,17 @@ const NavBar = () => {
 
         {/* Enlaces y botón - visible solo en pantallas medianas y grandes */}
         <div className="hidden md:flex items-center gap-6">
-          <a className="text-black text-sm" href="#">Sobre SmartInv</a>
-          <a className="text-black text-sm" href="#">Pide una Demo</a>
+          <a
+            className="text-black text-sm cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              const section = document.getElementById("aboutSmartInv");
+              section?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Sobre SmartInv
+          </a>
+          <a className="text-black text-sm" href="mailto:jmartinpizarro04@gmail.com">Pide una Demo</a>
 
           <Button
             textColor="text-white"
@@ -42,8 +51,17 @@ const NavBar = () => {
       {/* Menú desplegable en móviles */}
       {menuOpen && (
         <div className="flex flex-col items-start gap-4 pb-4 md:hidden">
-          <a className="text-black text-sm" href="#">Sobre SmartInv</a>
-          <a className="text-black text-sm" href="#">Pide una Demo</a>
+          <a
+            className="text-black text-sm cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              const section = document.getElementById("aboutSmartInv");
+              section?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Sobre SmartInv
+          </a>          <a className="text-black text-sm" href="mailto:jmartinpizarro04@gmail.com">Pide una Demo</a>
+
 
           <Button
             textColor="text-white"
