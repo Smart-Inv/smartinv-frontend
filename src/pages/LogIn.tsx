@@ -1,14 +1,14 @@
 import '../styles/App.css'
-import { Typography, CssBaseline, Stack, TextField, Button } from "@mui/material"
+
 import { useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from 'react-router-dom';
+
 import { fetchWithAuth } from '../utils/fetchWithAuth';
+import NavBar from '../components/NavBar';
+import Button from '../components/Button';
 
 const apiUrl = import.meta.env.VITE_API_URL;
-
-console.log(apiUrl)
-
 
 function LogIn() {
     const [email, setEmail] = useState('');
@@ -18,7 +18,7 @@ function LogIn() {
 
     const handleLogin = async () => {
         try {
-            const response = await fetchWithAuth(`${apiUrl}/login/`,{
+            const response = await fetchWithAuth(`${apiUrl}/login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -48,32 +48,41 @@ function LogIn() {
 
     return (
         <>
-            <CssBaseline />
-            <Typography variant="h3" gutterBottom color="primary">
-                Iniciar Sesión
-            </Typography>
-            <Stack spacing={2}>
-                <TextField
-                    label="Correo"
-                    variant="filled"
-                    size="small"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <TextField
-                    label="Contraseña"
-                    type="password"
-                    variant="filled"
-                    size="small"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <Button variant="outlined" color="primary" onClick={handleLogin}>
-                    Iniciar Sesión
-                </Button>
-            </Stack>
+            <NavBar />
+            <article className="flex flex-col items-center justify-center min-h-[80vh] px-4 sm:px-6 md:px-8">
+                <div className="w-full max-w-sm sm:max-w-md md:max-w-lg bg-white p-6 rounded-md shadow-md">
+                    <h3 className='text-center font-bold text-light-red text-2xl sm:text-3xl mb-4'>
+                        SmartInv Portal
+                    </h3>
+                    <section className='flex flex-col gap-4 text-left'>
+                        <div className='flex flex-col'>
+                            <label htmlFor="user" className="mb-1">Usuario:</label>
+                            <input
+                                id='user'
+                                className='rounded border border-gray-300 p-2 w-full'
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                
+                        <div className='flex flex-col'>
+                            <label htmlFor="password" className="mb-1">Contraseña:</label>
+                            <input
+                                id='password'
+                                type="password"
+                                className='rounded border border-gray-300 p-2 w-full'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
 
-            {/* Renderiza los toasts */}
+                        <Button className='mt-4 w-full' textColor='text-white' bgColor='bg-light-red' onClick={handleLogin}>
+                            Iniciar Sesión
+                        </Button>
+                    </section>
+                </div>
+            </article>
+
             <ToastContainer position="top-right" autoClose={3000} />
         </>
     )

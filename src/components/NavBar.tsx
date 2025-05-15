@@ -30,8 +30,13 @@ const NavBar = () => {
             className="text-black text-sm cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
-              const section = document.getElementById("aboutSmartInv");
-              section?.scrollIntoView({ behavior: "smooth" });
+              const currentPath = window.location.pathname;
+              if (currentPath === "/") {
+                const section = document.getElementById("aboutSmartInv");
+                section?.scrollIntoView({ behavior: "smooth" });
+              } else {
+                window.location.href = "/?scrollTo=aboutSmartInv";
+              }
             }}
           >
             Sobre SmartInv
@@ -55,8 +60,13 @@ const NavBar = () => {
             className="text-black text-sm cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
-              const section = document.getElementById("aboutSmartInv");
-              section?.scrollIntoView({ behavior: "smooth" });
+              const currentPath = window.location.pathname;
+              if (currentPath === "/") {
+                const section = document.getElementById("aboutSmartInv");
+                section?.scrollIntoView({ behavior: "smooth" });
+              } else {
+                window.location.href = "/?scrollTo=aboutSmartInv";
+              }
             }}
           >
             Sobre SmartInv
