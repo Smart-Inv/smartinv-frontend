@@ -1,6 +1,11 @@
 import Button from "../../Button";
 
-const RequestDemo = ({ primaryText, secondaryText }) => {
+type Props = {
+  primaryText: string,
+  secondaryText: string
+}
+
+const RequestDemo = ({ primaryText, secondaryText } : Props) => {
   return (
     <section className="w-full pt-14 lg:pt-10 flex items-center justify-center flex-col lg:flex-row">
       <div className="w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2 flex flex-col items-center justify-center gap-2.5 
