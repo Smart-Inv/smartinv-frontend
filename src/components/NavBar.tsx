@@ -41,7 +41,7 @@ const NavBar = () => {
           >
             Sobre SmartInv
           </a>
-          <a className="text-black text-sm" href="mailto:jmartinpizarro04@gmail.com">Pide una Demo</a>
+          <a className="text-black text-sm" href="mailto:contacto@smartinv.es">Pide una Demo</a>
 
           <Button
             textColor="text-white"
@@ -70,7 +70,7 @@ const NavBar = () => {
             }}
           >
             Sobre SmartInv
-          </a>          <a className="text-black text-sm" href="mailto:jmartinpizarro04@gmail.com">Pide una Demo</a>
+          </a>          <a className="text-black text-sm" href="mailto:contacto@smartinv.es">Pide una Demo</a>
 
 
           <Button

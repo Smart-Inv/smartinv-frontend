@@ -16,7 +16,7 @@ const RequestDemo = ({ primaryText, secondaryText } : Props) => {
           textColor="text-light-red"
           bgColor="bg-white"
           className="mt-2 md:mt-4 px-6 py-2 md:py-3 text-sm md:text-base"
-          onClick={() => window.location.href = "mailto:jmartinpizarro04@gmail.com"}
+          onClick={() => window.location.href = "mailto:contacto@smartinv.es"}
         >
           Pide una demo
         </Button>
