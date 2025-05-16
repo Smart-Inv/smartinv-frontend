@@ -45,7 +45,6 @@ export default function Dashboard() {
   useEffect(() => {
     async function loadDashboard() {
       try {
-        console.log(apiUrl)
         const res = await fetchWithAuth(`${apiUrl}/dashboard_data/`);
         if (!res.ok) throw new Error('Dash fetch failed');
         const json = await res.json();
