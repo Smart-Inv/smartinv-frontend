@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from 'react-router-dom';
 
-import { fetchWithAuth } from '../utils/fetchWithAuth';
 import NavBar from '../components/NavBar';
 import Button from '../components/Button';
 
@@ -18,7 +17,7 @@ function LogIn() {
 
     const handleLogin = async () => {
         try {
-            const response = await fetchWithAuth(`${apiUrl}/login/`, {
+            const response = await fetch(`${apiUrl}/login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -54,7 +53,7 @@ function LogIn() {
                     <h3 className='text-center font-bold text-light-red text-2xl sm:text-3xl mb-4'>
                         SmartInv Portal
                     </h3>
-                    <section className='flex flex-col gap-4 text-left'>
+                    <form onSubmit={e => e.preventDefault()} className='flex flex-col gap-4 text-left'>
                         <div className='flex flex-col'>
                             <label htmlFor="user" className="mb-1">Usuario:</label>
                             <input
@@ -79,7 +78,7 @@ function LogIn() {
                         <Button className='mt-4 w-full' textColor='text-white' bgColor='bg-light-red' onClick={handleLogin}>
                             Iniciar Sesión
                         </Button>
-                    </section>
+                    </form>
                 </div>
             </article>
 

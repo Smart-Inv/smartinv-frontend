@@ -7,6 +7,7 @@ export async function fetchWithAuth(input: RequestInfo, init?: RequestInit): Pro
     if (!token) {
         // no token, redirect
         window.location.href = '/login';
+        throw new Error("No token found!")
     }
 
     const authInit: RequestInit = {

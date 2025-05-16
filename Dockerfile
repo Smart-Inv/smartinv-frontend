@@ -7,6 +7,11 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+
+# .env may overwrite something in the dockerfile1
+RUN rm -f .env
+RUN echo "VITE_API_URL during build: $VITE_API_URL"
+
 RUN npm run build
 
 FROM nginx:stable-alpine AS production
