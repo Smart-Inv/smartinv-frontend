@@ -7,6 +7,9 @@ import Dashboard from './pages/Dashboard';
 import lightTheme from './themes/lightTheme';
 import darkTheme from './themes/darkTheme';
 
+import Predicciones from './pages/dashboard/Predicciones';
+import Ingresos from './pages/dashboard/Ingresos';
+
 function App() {
   const [modoOscuro] = useState(false);
   const theme = useMemo(() => (modoOscuro ? darkTheme : lightTheme), [modoOscuro]);
@@ -17,6 +20,8 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/predicciones" element={<Predicciones />} />
+          <Route path="/dashboard/ingresos" element={<Ingresos />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
