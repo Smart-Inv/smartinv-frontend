@@ -3,6 +3,7 @@ import { fetchWithAuth } from '../utils/fetchWithAuth';
 import { useNavigate } from 'react-router-dom';
 
 import DashBoardLayOut from '../layouts/DashBoardLayOut';
+import { DashData, useDashboard } from '../contexts/dashboard';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 // const pieColors = ['#7E3FF2', '#A269FF', '#9AA0FF', '#64B5F6'];
@@ -20,11 +21,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   // load data from fetching into an object
-  const [dashData, setDashData] = useState<null | {
-    stock_pie: { item: string, quantity: number }[],
-    revenues: { period: string, revenue: number }[],
-    items: string[]
-  }>(null);
+  const { dashData, setDashData } = useDashboard()
 
   // full history + prediction from /predict_values/
   // TODO: define type
@@ -40,7 +37,7 @@ export default function Dashboard() {
         const res = await fetchWithAuth(`${apiUrl}/dashboard_data/`);
         if (!res.ok) throw new Error('Dash fetch failed');
         const json = await res.json();
-        setDashData(json);
+        setDashData(json as DashData);
         //if (json.items.length) setStockType(json.items[0]);
       } catch {
         navigate('/login');
@@ -49,7 +46,9 @@ export default function Dashboard() {
       }
     }
     loadDashboard();
-  }, [navigate]);
+  }, [navigate, setDashData]);
+
+  console.log(dashData);
 
   if (loading) return <p className='mx-auto text-xl'>Estamos cargando tus datos...</p>;
 
@@ -64,6 +63,5 @@ export default function Dashboard() {
         <p className='mt-4 w-3/5'>En estos momentos tienes acceso a nuestra plataforma en programa piloto. Si todavía no puedes ver nada, no te preocupes, nuestro equipo está <span className='font-bold'>integrando los datos de tu negocio </span>en nuestra plataforma. El proceso suele tardar <span className='font-bold'>de una a dos semanas</span>. Nos comunicaremos contigo lo antes posible.</p>
       </section>
     </DashBoardLayOut>
-
   );
 }

@@ -1,0 +1,21 @@
+// src/contexts/dashboard.ts
+import { createContext, useContext } from "react";
+
+export type DashData = {
+  items?: string[];
+  ingresos?: { period: string, revenue: number }[];
+  predicciones?: number[];
+};
+
+export type DashboardContextValue = {
+  dashData: DashData;
+  setDashData: (data: DashData) => void;
+};
+
+export const DashboardContext = createContext<DashboardContextValue | undefined>(undefined);
+
+export function useDashboard() {
+  const ctx = useContext(DashboardContext);
+  if (!ctx) throw new Error("useDashboard debe usarse dentro de DashboardProvider");
+  return ctx;
+}
