@@ -48,7 +48,7 @@ function LogIn() {
     return (
         <>
             <NavBar />
-            <article className="flex flex-col items-center justify-center min-h-[80vh] px-4 sm:px-6 md:px-8">
+            <article className="mx-auto flex flex-col items-center justify-center min-h-[80vh] px-4 sm:px-6 md:px-8">
                 <div className="w-full max-w-sm sm:max-w-md md:max-w-lg bg-white p-6 rounded-md shadow-md">
                     <h3 className='text-center font-bold text-light-red text-2xl sm:text-3xl mb-4'>
                         SmartInv Portal

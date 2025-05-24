@@ -3,7 +3,7 @@ import { fetchWithAuth } from '../utils/fetchWithAuth';
 import { useNavigate } from 'react-router-dom';
 
 import DashBoardLayOut from '../layouts/DashBoardLayOut';
-import { DashData, useDashboard } from '../contexts/dashboard';
+import { useDashboard } from '../contexts/dashboard';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 // const pieColors = ['#7E3FF2', '#A269FF', '#9AA0FF', '#64B5F6'];
@@ -36,8 +36,12 @@ export default function Dashboard() {
       try {
         const res = await fetchWithAuth(`${apiUrl}/dashboard_data/`);
         if (!res.ok) throw new Error('Dash fetch failed');
-        const json = await res.json();
-        setDashData(json as DashData);
+        const data = await res.json();
+        console.log(data);
+        setDashData({ingresos : data.revenues,
+                    items : data.items,
+                    predicciones : data.predictions}
+        );
         //if (json.items.length) setStockType(json.items[0]);
       } catch {
         navigate('/login');
@@ -47,8 +51,6 @@ export default function Dashboard() {
     }
     loadDashboard();
   }, [navigate, setDashData]);
-
-  console.log(dashData);
 
   if (loading) return <p className='mx-auto text-xl'>Estamos cargando tus datos...</p>;
 

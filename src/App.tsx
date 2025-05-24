@@ -7,8 +7,8 @@ import Dashboard from './pages/Dashboard';
 import lightTheme from './themes/lightTheme';
 import darkTheme from './themes/darkTheme';
 
-import Predicciones from './pages/dashboard/Predicciones';
-import Ingresos from './pages/dashboard/Ingresos';
+import IngresosGuard from './pages/dashboard/IngresosGuard';
+import PrediccionesGuard from './pages/dashboard/PrediccionesGuard';
 
 import { DashboardProvider } from './contexts/DashboardProvider';
 
@@ -23,8 +23,8 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/predicciones" element={<Predicciones />} />
-            <Route path="/dashboard/ingresos" element={<Ingresos />} />
+            <Route path="/dashboard/predicciones" element={<PrediccionesGuard />} />
+            <Route path="/dashboard/ingresos" element={<IngresosGuard />} />
           </Routes>
         </DashboardProvider>
       </BrowserRouter>
