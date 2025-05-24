@@ -17,14 +17,19 @@ export default function Ingresos() {
 
   const ingresos = dashData.ingresos ?? [];
 
+  const backgroundColors = ingresos.map(item =>
+    item.revenue >= 0
+      ? 'green'
+      : 'var(--color-light-red)'
+  );
+
   const data = {
     labels: ingresos.map(item => item.period),
     datasets: [
       {
         label: 'Ingresos (€)',
         data: ingresos.map(item => item.revenue),
-        // puedes personalizar colores o usar tu paleta:
-        backgroundColor: ['#7E3FF2', '#A269FF']
+        backgroundColor: backgroundColors
       }
     ]
   };
