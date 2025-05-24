@@ -4,7 +4,7 @@ import { createContext, useContext } from "react";
 export type DashData = {
   items?: string[];
   ingresos?: { period: string, revenue: number }[];
-  predicciones?: number[];
+  predicciones?: {item: string, prediction: number}[];
 };
 
 export type DashboardContextValue = {
