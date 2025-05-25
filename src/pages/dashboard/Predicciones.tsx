@@ -168,6 +168,7 @@ export default function Ingresos() {
           ]
         }}
         options={options}
+        className='mx-auto w-3/4'
       />
 
     </DashBoardLayOut>
