@@ -3,7 +3,7 @@ import { fetchWithAuth } from '../utils/fetchWithAuth';
 import { useNavigate } from 'react-router-dom';
 
 import DashBoardLayOut from '../layouts/DashBoardLayOut';
-import { useDashboard } from '../contexts/dashboard';
+import { useDashboard, StockSeries } from '../contexts/dashboard';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 // const pieColors = ['#7E3FF2', '#A269FF', '#9AA0FF', '#64B5F6'];
@@ -37,12 +37,31 @@ export default function Dashboard() {
         const res = await fetchWithAuth(`${apiUrl}/dashboard_data/`);
         if (!res.ok) throw new Error('Dash fetch failed');
         const data = await res.json();
-        console.log(data);
-        setDashData({ingresos : data.revenues,
-                    items : data.items,
-                    predicciones : data.predictions}
-        );
-        //if (json.items.length) setStockType(json.items[0]);
+
+        const rawSeriesObj = (data.series ?? {}) as Record<string, StockSeries>;
+
+        const cleanedSeries = Object.entries(rawSeriesObj)
+          .reduce<Record<string, StockSeries>>((acc, [oldKey, stockSeries]) => {
+            // clean key
+            const cleanKey = oldKey.replace(/^nombre_producto_/, '');
+
+            // round data
+            const flooredSeries = stockSeries.series.map(dp => ({
+              period: dp.period,
+              stock: Math.floor(dp.stock)
+            }));
+
+            // save
+            acc[cleanKey] = { series: flooredSeries };
+            return acc;
+          }, {});
+
+        setDashData({
+          ingresos: data.revenues,
+          items: data.items,
+          predicciones: data.predictions,
+          series: cleanedSeries
+        });
       } catch {
         navigate('/login');
       } finally {
@@ -51,7 +70,6 @@ export default function Dashboard() {
     }
     loadDashboard();
   }, [navigate, setDashData]);
-
   if (loading) return <p className='mx-auto text-xl'>Estamos cargando tus datos...</p>;
 
   if (!dashData) return <p className='mx-auto text-xl text-light-red'>

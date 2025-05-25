@@ -1,10 +1,20 @@
 // src/contexts/dashboard.ts
 import { createContext, useContext } from "react";
 
+interface DataPoint {
+  period: string;
+  stock: number;
+};
+
+export interface StockSeries {
+  series: DataPoint[];
+}
+
 export type DashData = {
   items?: string[];
   ingresos?: { period: string, revenue: number }[];
   predicciones?: {item: string, prediction: number}[];
+  series?: Record<string, StockSeries>;
 };
 
 export type DashboardContextValue = {
