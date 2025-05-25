@@ -17,10 +17,13 @@
   color: rgb(0, 0, 0);
   background-color: #ffffff;
 
+  --light-red: #C1121F;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 body {
